@@ -66,19 +66,18 @@ body {
 }
 
 .theme-toggle {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: rgba(203, 213, 225, 0.1);
+  padding: 0.5rem 1rem;
+  background-color: var(--primary);
+  color: white;
   border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: background-color 0.3s;
 }
 
 .theme-toggle:hover {
-  background-color: rgba(203, 213, 225, 0.2);
+  background-color: var(--focus);
 }
 
 .main {
@@ -431,18 +430,4 @@ body {
   text-align: center;
   color: var(--muted);
   padding: 2rem;
-}
-.theme-toggle {
-  padding: 0.5rem 1rem;
-  background-color: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.theme-toggle:hover {
-  background-color: var(--focus);
 }

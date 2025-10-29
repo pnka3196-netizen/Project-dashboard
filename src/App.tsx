@@ -1,5 +1,18 @@
 import { useState, useEffect } from "react";
 
+function useDarkMode() {
+  const [dark, setDark] = useState(
+    () => localStorage.getItem("theme") !== "light"
+  );
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("light", !dark);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
+
+  return { dark, toggle: () => setDark((d) => !d) };
+}
+
 interface Project {
   id: string;
   name: string;
@@ -77,7 +90,7 @@ const mockTasks: { [key: string]: Task[] } = {
 };
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const { dark, toggle } = useDarkMode();
   const [projects] = useState<Project[]>(mockProjects);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -85,24 +98,6 @@ const App = () => {
   const [statusFilter, setStatusFilter] = useState("All");
   const [sortBy, setSortBy] = useState("lastUpdated");
   const [newTaskTitle, setNewTaskTitle] = useState("");
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
-      setDarkMode(false);
-      document.documentElement.classList.add("light");
-    }
-  }, []);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.remove("light");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.add("light");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -180,12 +175,8 @@ const App = () => {
       <header className="header">
         <div className="header-content">
           <h1>Projects Dashboard</h1>
-
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="theme-toggle"
-          >
-            {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          <button onClick={toggle} className="theme-toggle">
+            {dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
           </button>
         </div>
       </header>
@@ -263,7 +254,7 @@ const App = () => {
               onClick={() => setSelectedProject(null)}
               className="back-button"
             >
-              ← Back to Projects
+              Back to Projects
             </button>
 
             <div className="project-detail">
