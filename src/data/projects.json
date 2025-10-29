@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p-101",
+    "name": "Agentic Workforce Portal",
+    "owner": "Anita",
+    "status": "Active",
+    "lastUpdated": "2025-10-25T10:30:00Z",
+    "openTasks": 2
+  },
+  {
+    "id": "p-102",
+    "name": "Clinical Trials Insight",
+    "owner": "Rahul",
+    "status": "Paused",
+    "lastUpdated": "2025-10-26T16:40:00Z",
+    "openTasks": 1
+  },
+  {
+    "id": "p-103",
+    "name": "Disaster Alerts Network",
+    "owner": "Meera",
+    "status": "Completed",
+    "lastUpdated": "2025-10-20T09:10:00Z",
+    "openTasks": 0
+  }
+]
